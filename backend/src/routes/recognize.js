@@ -1,10 +1,41 @@
 const express = require('express');
+const multer = require('multer');
 const router = express.Router();
-// TODO: Claude Haiku veya Gemini Flash Vision entegrasyonu
 
-router.post('/', async (req, res) => {
-  // Fotoğraf alınır, AI'ya gönderilir, taşlar JSON dönülür
-  res.json({ message: 'recognize endpoint - TODO' });
+const authMiddleware = require('../middleware/auth');
+const rateLimitMiddleware = require('../middleware/rateLimit');
+const { recognizeTiles } = require('../services/visionService');
+const { getDb } = require('../db');
+
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 10 * 1024 * 1024 },
+  fileFilter: (_, file, cb) => {
+    if (file.mimetype.startsWith('image/')) cb(null, true);
+    else cb(new Error('Sadece görsel dosyaları kabul edilir'));
+  },
+});
+
+router.post('/', authMiddleware, rateLimitMiddleware, upload.single('image'), async (req, res) => {
+  if (!req.file) return res.status(400).json({ error: 'Görsel gerekli' });
+
+  try {
+    const imageBase64 = req.file.buffer.toString('base64');
+    const mimeType = req.file.mimetype;
+
+    const tiles = await recognizeTiles(imageBase64, mimeType);
+
+    // Fotoğrafı arşivle (ileride model eğitimi için)
+    const db = getDb();
+    db.prepare(`
+      INSERT INTO photo_archive (user_id, recognized_tiles) VALUES (?, ?)
+    `).run(req.userId, JSON.stringify(tiles));
+
+    res.json({ tiles, usage: req.usageInfo });
+  } catch (err) {
+    console.error('Recognize error:', err);
+    res.status(500).json({ error: 'Taş tanıma başarısız: ' + err.message });
+  }
 });
 
 module.exports = router;
