@@ -1,0 +1,64 @@
+# ========================
+# macOS
+# ========================
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# ========================
+# Node.js / Backend
+# ========================
+backend/node_modules/
+backend/.env
+backend/database/*.db
+backend/database/*.db-shm
+backend/database/*.db-wal
+
+# Upload klasörü (fotoğraflar)
+backend/uploads/
+
+# Logs
+backend/logs/
+*.log
+npm-debug.log*
+
+# ========================
+# Xcode / iOS
+# ========================
+# Build çıktıları
+OkeyApp/build/
+OkeyApp/DerivedData/
+
+# Kullanıcıya özel Xcode ayarları
+OkeyApp/*.xcodeproj/xcuserdata/
+OkeyApp/*.xcworkspace/xcuserdata/
+OkeyApp/**/*.xcuserstate
+
+# SwiftPM
+OkeyApp/.build/
+OkeyApp/.swiftpm/
+
+# Pods (şu an yok ama ileride kullanılırsa)
+OkeyApp/Pods/
+OkeyApp/Podfile.lock
+
+# ========================
+# Core ML modeli (büyük dosya)
+# ========================
+OkeyApp/**/*.mlmodel
+OkeyApp/**/*.mlmodelc
+
+# Eğitim verisi (fotoğraflar)
+training_data/
+dataset/
+
+# ========================
+# Editor / IDE
+# ========================
+.vscode/
+.idea/
+*.swp
+*.swo
