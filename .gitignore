@@ -29,27 +29,27 @@ npm-debug.log*
 # Xcode / iOS
 # ========================
 # Build çıktıları
-OkeyApp/build/
-OkeyApp/DerivedData/
+okey-app/build/
+okey-app/DerivedData/
 
 # Kullanıcıya özel Xcode ayarları
-OkeyApp/*.xcodeproj/xcuserdata/
-OkeyApp/*.xcworkspace/xcuserdata/
-OkeyApp/**/*.xcuserstate
+okey-app/*.xcodeproj/xcuserdata/
+okey-app/*.xcworkspace/xcuserdata/
+okey-app/**/*.xcuserstate
 
 # SwiftPM
-OkeyApp/.build/
-OkeyApp/.swiftpm/
+okey-app/.build/
+okey-app/.swiftpm/
 
 # Pods (şu an yok ama ileride kullanılırsa)
-OkeyApp/Pods/
-OkeyApp/Podfile.lock
+okey-app/Pods/
+okey-app/Podfile.lock
 
 # ========================
 # Core ML modeli (büyük dosya)
 # ========================
-OkeyApp/**/*.mlmodel
-OkeyApp/**/*.mlmodelc
+okey-app/**/*.mlmodel
+okey-app/**/*.mlmodelc
 
 # Eğitim verisi (fotoğraflar)
 training_data/

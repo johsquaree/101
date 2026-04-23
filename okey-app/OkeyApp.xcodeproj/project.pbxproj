@@ -1,0 +1,366 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		12425F41E4803B61BEB156C2 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F8DDD835C8390513F653CC /* Tile.swift */; };
+		35673075600BDD037CBCB967 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20140FECF960A4982266FB2 /* ResultView.swift */; };
+		5480B50E9E69201B93A601CB /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34DE6866AFB4A95D074FBA2 /* HomeView.swift */; };
+		54C16E9A7828E7A1E6A87739 /* GameResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A143D6FB93924C187CC36F1 /* GameResult.swift */; };
+		5ECF757F39A0EA5F7AB34E22 /* StoreKitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90825FB499F3F0D46FA75DB /* StoreKitService.swift */; };
+		7F7F73B6D3D388A2299FCCAD /* PackagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5E91DDB0CF355D6A13D659 /* PackagesView.swift */; };
+		821446790CF3EFF4593423DD /* CameraService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E9435AF51B8D478D80E228 /* CameraService.swift */; };
+		86E73D0A83C5F16F305987E1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C3B961B98882A37D07360A /* User.swift */; };
+		D4E00926F767AEE402558857 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB932859FC7633B08F9CC3D /* APIService.swift */; };
+		E129E8F6285C3F54CDD79C10 /* OkeyAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F458C5A40278ADD2A49C3C37 /* OkeyAppApp.swift */; };
+		F9545CC485A6D6A9832CE654 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3FF36E8E4F0481F1B40FAAF /* CameraView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0F5E91DDB0CF355D6A13D659 /* PackagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackagesView.swift; sourceTree = "<group>"; };
+		3A143D6FB93924C187CC36F1 /* GameResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResult.swift; sourceTree = "<group>"; };
+		58E9435AF51B8D478D80E228 /* CameraService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraService.swift; sourceTree = "<group>"; };
+		6CF84D330D936AE5F14C476D /* OkeyApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OkeyApp.entitlements; sourceTree = "<group>"; };
+		74014EC370655B475DD3410D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		92F8DDD835C8390513F653CC /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
+		A34DE6866AFB4A95D074FBA2 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		AEB932859FC7633B08F9CC3D /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		D4C3B961B98882A37D07360A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		E3FF36E8E4F0481F1B40FAAF /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		F20140FECF960A4982266FB2 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
+		F2EB5E411B3DAF8FF00AFE29 /* OkeyApp.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = OkeyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F458C5A40278ADD2A49C3C37 /* OkeyAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OkeyAppApp.swift; sourceTree = "<group>"; };
+		F90825FB499F3F0D46FA75DB /* StoreKitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreKitService.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		05E0DC5CF27A962F27745E14 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F2EB5E411B3DAF8FF00AFE29 /* OkeyApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0FBCB35152DDC0894E6C5724 = {
+			isa = PBXGroup;
+			children = (
+				80A05073849C121C73986B71 /* src */,
+				05E0DC5CF27A962F27745E14 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		135345CC5845E3A1DB54FD80 /* app */ = {
+			isa = PBXGroup;
+			children = (
+				74014EC370655B475DD3410D /* Info.plist */,
+				6CF84D330D936AE5F14C476D /* OkeyApp.entitlements */,
+				F458C5A40278ADD2A49C3C37 /* OkeyAppApp.swift */,
+			);
+			path = app;
+			sourceTree = "<group>";
+		};
+		2C577865705DEAB75E48828D /* services */ = {
+			isa = PBXGroup;
+			children = (
+				AEB932859FC7633B08F9CC3D /* APIService.swift */,
+				58E9435AF51B8D478D80E228 /* CameraService.swift */,
+				F90825FB499F3F0D46FA75DB /* StoreKitService.swift */,
+			);
+			path = services;
+			sourceTree = "<group>";
+		};
+		80A05073849C121C73986B71 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				135345CC5845E3A1DB54FD80 /* app */,
+				EC43B4AB16412EF7E9726F79 /* models */,
+				2C577865705DEAB75E48828D /* services */,
+				8F22D4C38CB93ABBEA2B973F /* views */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		8F22D4C38CB93ABBEA2B973F /* views */ = {
+			isa = PBXGroup;
+			children = (
+				E3FF36E8E4F0481F1B40FAAF /* CameraView.swift */,
+				A34DE6866AFB4A95D074FBA2 /* HomeView.swift */,
+				0F5E91DDB0CF355D6A13D659 /* PackagesView.swift */,
+				F20140FECF960A4982266FB2 /* ResultView.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		EC43B4AB16412EF7E9726F79 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				3A143D6FB93924C187CC36F1 /* GameResult.swift */,
+				92F8DDD835C8390513F653CC /* Tile.swift */,
+				D4C3B961B98882A37D07360A /* User.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D84E135057012C35E27FB7D6 /* OkeyApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C6910BAB47717769E5627D05 /* Build configuration list for PBXNativeTarget "OkeyApp" */;
+			buildPhases = (
+				FE5E29D4BBDC9D1800281B37 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OkeyApp;
+			packageProductDependencies = (
+			);
+			productName = OkeyApp;
+			productReference = F2EB5E411B3DAF8FF00AFE29 /* OkeyApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		34611A47A7FFDA1B74165A11 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+				};
+			};
+			buildConfigurationList = 26CF1B9127AF15C5AF4140FA /* Build configuration list for PBXProject "OkeyApp" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 0FBCB35152DDC0894E6C5724;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 05E0DC5CF27A962F27745E14 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D84E135057012C35E27FB7D6 /* OkeyApp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FE5E29D4BBDC9D1800281B37 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4E00926F767AEE402558857 /* APIService.swift in Sources */,
+				821446790CF3EFF4593423DD /* CameraService.swift in Sources */,
+				F9545CC485A6D6A9832CE654 /* CameraView.swift in Sources */,
+				54C16E9A7828E7A1E6A87739 /* GameResult.swift in Sources */,
+				5480B50E9E69201B93A601CB /* HomeView.swift in Sources */,
+				E129E8F6285C3F54CDD79C10 /* OkeyAppApp.swift in Sources */,
+				7F7F73B6D3D388A2299FCCAD /* PackagesView.swift in Sources */,
+				35673075600BDD037CBCB967 /* ResultView.swift in Sources */,
+				5ECF757F39A0EA5F7AB34E22 /* StoreKitService.swift in Sources */,
+				12425F41E4803B61BEB156C2 /* Tile.swift in Sources */,
+				86E73D0A83C5F16F305987E1 /* User.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		003B19912BC00D3B9374F166 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		4CCB2FA8ED8F91744D34EFA2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		9F1A862264BE954BAC05A308 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = src/app/OkeyApp.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				INFOPLIST_FILE = src/app/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.okeyapp.app;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		E08201D6BF699BF5344DCAD4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = src/app/OkeyApp.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				INFOPLIST_FILE = src/app/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.okeyapp.app;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		26CF1B9127AF15C5AF4140FA /* Build configuration list for PBXProject "OkeyApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				003B19912BC00D3B9374F166 /* Debug */,
+				4CCB2FA8ED8F91744D34EFA2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		C6910BAB47717769E5627D05 /* Build configuration list for PBXNativeTarget "OkeyApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9F1A862264BE954BAC05A308 /* Debug */,
+				E08201D6BF699BF5344DCAD4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 34611A47A7FFDA1B74165A11 /* Project object */;
+}
