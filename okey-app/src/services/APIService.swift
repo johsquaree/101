@@ -3,8 +3,7 @@ import Foundation
 class APIService {
     static let shared = APIService()
 
-    // Deploy sonrası Railway/Render URL'iyle değiştirilecek
-    private let baseURL = "https://your-backend-url.railway.app"
+    private let baseURL = "https://gracious-benevolence-production.up.railway.app"
 
     private var authToken: String? {
         get { UserDefaults.standard.string(forKey: "authToken") }
