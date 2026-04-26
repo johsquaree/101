@@ -97,4 +97,14 @@ router.post('/verify-purchase', authMiddleware, (req, res) => {
   res.json({ success: true, productId });
 });
 
+// Geliştirme/test girişi — sadece paid Apple hesabı olmadan test için
+router.post('/dev-login', (req, res) => {
+  const db = getDb();
+  const testUserId = 'dev-test-user-001';
+  db.prepare(`INSERT INTO users (id, email) VALUES (?, ?) ON CONFLICT(id) DO NOTHING`)
+    .run(testUserId, 'dev@okeyapp.test');
+  const token = jwt.sign({ sub: testUserId }, JWT_SECRET, { expiresIn: '7d' });
+  res.json({ token, userId: testUserId });
+});
+
 module.exports = router;

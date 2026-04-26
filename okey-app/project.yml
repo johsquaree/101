@@ -26,9 +26,6 @@ targets:
           - UIInterfaceOrientationPortrait
     entitlements:
       path: src/app/OkeyApp.entitlements
-      properties:
-        com.apple.developer.applesignin:
-          - Default
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.okeyapp.app

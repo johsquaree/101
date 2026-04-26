@@ -49,4 +49,16 @@ class AuthService: NSObject, ObservableObject {
         UserDefaults.standard.removeObject(forKey: tokenKey)
         isLoggedIn = false
     }
+
+    #if DEBUG
+    func devLogin() async {
+        errorMessage = nil
+        do {
+            try await APIService.shared.devLogin()
+            isLoggedIn = true
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+    }
+    #endif
 }

@@ -45,6 +45,14 @@ struct HomeView: View {
             .frame(height: 52)
             .padding(.horizontal, 32)
 
+            #if DEBUG
+            Button("Test ile Giriş Yap") {
+                Task { await auth.devLogin() }
+            }
+            .font(.footnote)
+            .foregroundStyle(.secondary)
+            #endif
+
             if let error = auth.errorMessage {
                 Text(error)
                     .foregroundStyle(.red)

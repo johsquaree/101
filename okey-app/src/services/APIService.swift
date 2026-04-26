@@ -53,6 +53,13 @@ class APIService {
 
     var isLoggedIn: Bool { authToken != nil }
 
+    #if DEBUG
+    func devLogin() async throws {
+        let res: AuthResponse = try await request("/api/auth/dev-login", method: "POST")
+        authToken = res.token
+    }
+    #endif
+
     func logout() { authToken = nil }
 
     // MARK: - Core features
