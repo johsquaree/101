@@ -4,22 +4,23 @@ const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
 const PROMPT = `Bu fotoğrafta Türk Okey (101) taşlarını say ve tanı.
 
-TAŞLARIN GÖRÜNÜMÜ:
-- Taşlar beyaz/krem zemin üzerine renkli sayılardan oluşur
+NORMAL TAŞLAR:
+- Beyaz/krem zemin üzerine renkli sayılar vardır (1-13)
 - Rengi sayının rengi belirler, zemin değil:
   * Mavi sayı = "blue"
   * Kırmızı sayı = "red"
   * Siyah sayı = "black"
   * Sarı/turuncu sayı = "yellow"
-- Sayılar 1-13 arası
 - Taşların altındaki küçük kalp (♥) işaretini görmezden gel
 
-JOKER/OKEY TAŞLARI (ÖNEMLİ):
-- Ters duran taş = joker
-- Yan yatmış taş = joker
-- Baş aşağı duran taş = joker
-- Normal taşlardan farklı görünen taş = joker
-- Jokerler: {"color":"joker","number":null,"isOkey":false}
+SAHTEJOKERLERİ TANIMA (çok önemli):
+Şu iki tür taş jokerdir, {"color":"joker","number":null} olarak yaz:
+
+1. TAMAMEN BOŞ BEYAZ TAŞ: Üzerinde hiç sayı yok, sadece düz beyaz/krem yüzey
+2. SEMBOLLü TAŞ: Sayı yerine daire, yuvarlak, karalama veya özel işaret var (sayı değil)
+
+NOT: Gösterge taşı (okeyin bir önceki taşı) elde normal görünür, sayısı olan sıradan bir taştır — onu normal taş olarak tanı, joker değil.
+NOT: Okey taşı da elde normal görünür — sayısı olan sıradan bir taş gibi görünür, joker değil. Kullanıcı hangisinin okey olduğunu ayrıca belirtecek.
 
 KURALLAR:
 - Her taşı tek tek listele, hiçbirini atlama
