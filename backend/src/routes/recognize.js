@@ -16,6 +16,7 @@ const upload = multer({
   },
 });
 
+// Fotoğraf gönder → taşları tanı
 router.post('/', authMiddleware, rateLimitMiddleware, upload.single('image'), async (req, res) => {
   if (!req.file) return res.status(400).json({ error: 'Görsel gerekli' });
 
@@ -25,17 +26,31 @@ router.post('/', authMiddleware, rateLimitMiddleware, upload.single('image'), as
 
     const tiles = await recognizeTiles(imageBase64, mimeType);
 
-    // Fotoğrafı arşivle (ileride model eğitimi için)
     const db = getDb();
-    db.prepare(`
+    const result = db.prepare(`
       INSERT INTO photo_archive (user_id, recognized_tiles) VALUES (?, ?)
     `).run(req.userId, JSON.stringify(tiles));
 
-    res.json({ tiles, usage: req.usageInfo });
+    res.json({ tiles, archiveId: result.lastInsertRowid, usage: req.usageInfo });
   } catch (err) {
     console.error('Recognize error:', err);
     res.status(500).json({ error: 'Taş tanıma başarısız: ' + err.message });
   }
+});
+
+// Kullanıcı düzeltmesini kaydet (AI eğitimi için)
+router.post('/correct', authMiddleware, (req, res) => {
+  const { archiveId, correctedTiles } = req.body;
+  if (!archiveId || !correctedTiles) {
+    return res.status(400).json({ error: 'archiveId ve correctedTiles gerekli' });
+  }
+
+  const db = getDb();
+  db.prepare(`
+    UPDATE photo_archive SET corrected_tiles = ? WHERE id = ? AND user_id = ?
+  `).run(JSON.stringify(correctedTiles), archiveId, req.userId);
+
+  res.json({ success: true });
 });
 
 module.exports = router;

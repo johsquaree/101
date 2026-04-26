@@ -1,12 +1,18 @@
 import SwiftUI
 import PhotosUI
 
+struct RecognizeDestination: Identifiable, Hashable {
+    let id = UUID()
+    let tiles: [Tile]
+    let archiveId: Int?
+}
+
 struct CameraView: View {
     @StateObject private var camera = CameraService()
     @State private var pickerItem: PhotosPickerItem?
     @State private var isAnalyzing = false
     @State private var errorMessage: String?
-    @State private var result: GameResult?
+    @State private var destination: RecognizeDestination?
 
     var body: some View {
         VStack(spacing: 20) {
@@ -25,7 +31,7 @@ struct CameraView: View {
                         if isAnalyzing {
                             ProgressView().tint(.white)
                         } else {
-                            Label("Analiz Et", systemImage: "sparkles")
+                            Label("Taşları Tanı", systemImage: "sparkles")
                                 .font(.headline)
                         }
                     }
@@ -87,8 +93,8 @@ struct CameraView: View {
             }
         }
         .navigationTitle("Fotoğraf Çek")
-        .navigationDestination(item: $result) { r in
-            ResultView(result: r)
+        .navigationDestination(item: $destination) { dest in
+            RecognitionView(archiveId: dest.archiveId, tiles: dest.tiles)
         }
         .onChange(of: pickerItem) { _, item in
             Task {
@@ -105,9 +111,8 @@ struct CameraView: View {
         isAnalyzing = true
         errorMessage = nil
         do {
-            let recognize = try await APIService.shared.recognizeTiles(imageData: imageData)
-            let gameResult = try await APIService.shared.evaluateHand(tiles: recognize.tiles)
-            result = gameResult
+            let response = try await APIService.shared.recognizeTiles(imageData: imageData)
+            destination = RecognizeDestination(tiles: response.tiles, archiveId: response.archiveId)
         } catch {
             errorMessage = error.localizedDescription
         }

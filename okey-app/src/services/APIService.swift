@@ -95,6 +95,11 @@ class APIService {
         return try JSONDecoder().decode(RecognizeResponse.self, from: data)
     }
 
+    func saveCorrection(archiveId: Int, tiles: [Tile]) async throws {
+        let body = try JSONEncoder().encode(CorrectionRequest(archiveId: archiveId, correctedTiles: tiles))
+        let _: EmptyResponse = try await request("/api/recognize/correct", method: "POST", body: body)
+    }
+
     func evaluateHand(tiles: [Tile], okeyTile: OkeyTileRequest? = nil) async throws -> GameResult {
         let body = try JSONEncoder().encode(EvaluateRequest(tiles: tiles, okeyTile: okeyTile))
         return try await request("/api/evaluate", method: "POST", body: body)
@@ -117,6 +122,7 @@ struct UsageResponse: Decodable {
 
 struct RecognizeResponse: Decodable {
     let tiles: [Tile]
+    let archiveId: Int?
     let usage: UsageInfo?
 }
 
@@ -137,6 +143,7 @@ struct EvaluateRequest: Encodable {
     let okeyTile: OkeyTileRequest?
 }
 
+struct CorrectionRequest: Encodable { let archiveId: Int; let correctedTiles: [Tile] }
 struct PurchaseRequest: Encodable { let productId: String; let transactionId: String }
 struct EmptyResponse: Decodable {}
 struct ErrorBody: Decodable { let error: String }

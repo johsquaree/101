@@ -11,7 +11,9 @@
 		35673075600BDD037CBCB967 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20140FECF960A4982266FB2 /* ResultView.swift */; };
 		5480B50E9E69201B93A601CB /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34DE6866AFB4A95D074FBA2 /* HomeView.swift */; };
 		54C16E9A7828E7A1E6A87739 /* GameResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A143D6FB93924C187CC36F1 /* GameResult.swift */; };
+		5CCB2A4838E1CB91ABFE4CA9 /* RecognitionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21E93EF1375A39A63A76316 /* RecognitionView.swift */; };
 		5ECF757F39A0EA5F7AB34E22 /* StoreKitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90825FB499F3F0D46FA75DB /* StoreKitService.swift */; };
+		7A2107EA74D54AA7DB5A49C6 /* TileEditSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39FBB66C4F7D2F980E441AB /* TileEditSheet.swift */; };
 		7F7F73B6D3D388A2299FCCAD /* PackagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5E91DDB0CF355D6A13D659 /* PackagesView.swift */; };
 		821446790CF3EFF4593423DD /* CameraService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E9435AF51B8D478D80E228 /* CameraService.swift */; };
 		86E73D0A83C5F16F305987E1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C3B961B98882A37D07360A /* User.swift */; };
@@ -32,9 +34,11 @@
 		A34DE6866AFB4A95D074FBA2 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		AEB932859FC7633B08F9CC3D /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		D4C3B961B98882A37D07360A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		E21E93EF1375A39A63A76316 /* RecognitionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionView.swift; sourceTree = "<group>"; };
 		E3FF36E8E4F0481F1B40FAAF /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		F20140FECF960A4982266FB2 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		F2EB5E411B3DAF8FF00AFE29 /* OkeyApp.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = OkeyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F39FBB66C4F7D2F980E441AB /* TileEditSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileEditSheet.swift; sourceTree = "<group>"; };
 		F458C5A40278ADD2A49C3C37 /* OkeyAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OkeyAppApp.swift; sourceTree = "<group>"; };
 		F90825FB499F3F0D46FA75DB /* StoreKitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreKitService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -94,7 +98,9 @@
 				E3FF36E8E4F0481F1B40FAAF /* CameraView.swift */,
 				A34DE6866AFB4A95D074FBA2 /* HomeView.swift */,
 				0F5E91DDB0CF355D6A13D659 /* PackagesView.swift */,
+				E21E93EF1375A39A63A76316 /* RecognitionView.swift */,
 				F20140FECF960A4982266FB2 /* ResultView.swift */,
+				F39FBB66C4F7D2F980E441AB /* TileEditSheet.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -172,9 +178,11 @@
 				5480B50E9E69201B93A601CB /* HomeView.swift in Sources */,
 				E129E8F6285C3F54CDD79C10 /* OkeyAppApp.swift in Sources */,
 				7F7F73B6D3D388A2299FCCAD /* PackagesView.swift in Sources */,
+				5CCB2A4838E1CB91ABFE4CA9 /* RecognitionView.swift in Sources */,
 				35673075600BDD037CBCB967 /* ResultView.swift in Sources */,
 				5ECF757F39A0EA5F7AB34E22 /* StoreKitService.swift in Sources */,
 				12425F41E4803B61BEB156C2 /* Tile.swift in Sources */,
+				7A2107EA74D54AA7DB5A49C6 /* TileEditSheet.swift in Sources */,
 				86E73D0A83C5F16F305987E1 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
