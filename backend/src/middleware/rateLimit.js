@@ -5,6 +5,9 @@ function rateLimitMiddleware(req, res, next) {
   const userId = req.userId;
   const today = new Date().toISOString().slice(0, 10);
 
+  // Kullanıcı yoksa oluştur (deploy sonrası DB sıfırlanınca token geçersiz kalmasın)
+  db.prepare(`INSERT INTO users (id, email) VALUES (?, NULL) ON CONFLICT(id) DO NOTHING`).run(userId);
+
   // Aktif abonelik kontrolü (25/gün)
   const sub = db.prepare(`
     SELECT id FROM purchases
@@ -47,7 +50,12 @@ function rateLimitMiddleware(req, res, next) {
   next();
 }
 
+function ensureUser(db, userId) {
+  db.prepare(`INSERT INTO users (id, email) VALUES (?, NULL) ON CONFLICT(id) DO NOTHING`).run(userId);
+}
+
 function ensureLog(db, userId, date) {
+  ensureUser(db, userId);
   db.prepare(`
     INSERT INTO usage_logs (user_id, used_at, count) VALUES (?, ?, 0)
     ON CONFLICT(user_id, used_at) DO NOTHING
