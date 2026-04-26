@@ -97,12 +97,27 @@ router.post('/verify-purchase', authMiddleware, (req, res) => {
   res.json({ success: true, productId });
 });
 
-// Geliştirme/test girişi — sadece paid Apple hesabı olmadan test için
+// Geliştirme/test girişi — 100 fotoğraf hakkıyla giriş yapar
 router.post('/dev-login', (req, res) => {
   const db = getDb();
   const testUserId = 'dev-test-user-001';
+
   db.prepare(`INSERT INTO users (id, email) VALUES (?, ?) ON CONFLICT(id) DO NOTHING`)
     .run(testUserId, 'dev@okeyapp.test');
+
+  // Zaten yeterli hak yoksa 100 tane ekle
+  const existing = db.prepare(`
+    SELECT COALESCE(SUM(photos_remaining), 0) as total FROM purchases
+    WHERE user_id = ? AND product_id = 'com.okeyapp.pack.large' AND photos_remaining > 0
+  `).get(testUserId);
+
+  if (!existing || existing.total < 10) {
+    db.prepare(`
+      INSERT INTO purchases (user_id, product_id, receipt, photos_remaining)
+      VALUES (?, 'com.okeyapp.pack.large', 'dev-receipt-auto', 100)
+    `).run(testUserId);
+  }
+
   const token = jwt.sign({ sub: testUserId }, JWT_SECRET, { expiresIn: '7d' });
   res.json({ token, userId: testUserId });
 });
