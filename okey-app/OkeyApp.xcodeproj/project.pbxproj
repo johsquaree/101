@@ -37,7 +37,7 @@
 		E21E93EF1375A39A63A76316 /* RecognitionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionView.swift; sourceTree = "<group>"; };
 		E3FF36E8E4F0481F1B40FAAF /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		F20140FECF960A4982266FB2 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
-		F2EB5E411B3DAF8FF00AFE29 /* OkeyApp.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = OkeyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2EB5E411B3DAF8FF00AFE29 /* OkeyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OkeyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F39FBB66C4F7D2F980E441AB /* TileEditSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileEditSheet.swift; sourceTree = "<group>"; };
 		F458C5A40278ADD2A49C3C37 /* OkeyAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OkeyAppApp.swift; sourceTree = "<group>"; };
 		F90825FB499F3F0D46FA75DB /* StoreKitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreKitService.swift; sourceTree = "<group>"; };
@@ -143,8 +143,6 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
-				TargetAttributes = {
-				};
 			};
 			buildConfigurationList = 26CF1B9127AF15C5AF4140FA /* Build configuration list for PBXProject "OkeyApp" */;
 			developmentRegion = en;
@@ -316,6 +314,7 @@
 				CODE_SIGN_ENTITLEMENTS = src/app/OkeyApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 84SM5PJJJX;
 				INFOPLIST_FILE = src/app/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -337,6 +336,7 @@
 				CODE_SIGN_ENTITLEMENTS = src/app/OkeyApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 84SM5PJJJX;
 				INFOPLIST_FILE = src/app/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
