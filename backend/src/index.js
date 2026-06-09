@@ -21,8 +21,10 @@ app.use('/api/auth', authRoutes);
 
 app.get('/health', (req, res) => res.json({ status: 'ok' }));
 
-// DB'yi başlat, sonra sunucuyu aç
+// DB'yi başlat, test ortamında sunucu açma
 getDb();
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+}
 
 module.exports = app;
