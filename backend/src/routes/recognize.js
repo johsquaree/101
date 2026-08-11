@@ -1,11 +1,13 @@
 const express = require('express');
 const multer = require('multer');
+const path = require('path');
+const fs = require('fs');
 const router = express.Router();
 
 const authMiddleware = require('../middleware/auth');
 const rateLimitMiddleware = require('../middleware/rateLimit');
 const { recognizeTiles } = require('../services/visionService');
-const { getDb } = require('../db');
+const { getDb, getImagesDir } = require('../db');
 
 const upload = multer({
   storage: multer.memoryStorage(),
@@ -31,12 +33,26 @@ router.post('/', authMiddleware, rateLimitMiddleware, upload.single('image'), as
       INSERT INTO photo_archive (user_id, recognized_tiles) VALUES (?, ?)
     `).run(req.userId, JSON.stringify(tiles));
 
-    res.json({ tiles, archiveId: result.lastInsertRowid, usage: req.usageInfo });
+    const archiveId = result.lastInsertRowid;
+    const imagePath = saveArchiveImage(archiveId, req.file.buffer, mimeType);
+    db.prepare('UPDATE photo_archive SET image_path = ? WHERE id = ?').run(imagePath, archiveId);
+
+    res.json({ tiles, archiveId, usage: req.usageInfo });
   } catch (err) {
     console.error('Recognize error:', err);
     res.status(500).json({ error: 'Taş tanıma başarısız: ' + err.message });
   }
 });
+
+const EXT_BY_MIME = { 'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp', 'image/heic': 'heic' };
+
+// Eval/regresyon testleri fotoğrafı yeniden AI'a gönderebilsin diye kalıcı diske yazar.
+function saveArchiveImage(archiveId, buffer, mimeType) {
+  const ext = EXT_BY_MIME[mimeType] || 'jpg';
+  const filePath = path.join(getImagesDir(), `${archiveId}.${ext}`);
+  fs.writeFileSync(filePath, buffer);
+  return filePath;
+}
 
 // Kullanıcı düzeltmesini kaydet (AI eğitimi için)
 router.post('/correct', authMiddleware, (req, res) => {

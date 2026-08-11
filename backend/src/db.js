@@ -56,4 +56,12 @@ function getDb() {
   return db;
 }
 
-module.exports = { getDb };
+// Fotoğraflar DB ile aynı kalıcı volume altında saklanır (Railway'de tek volume mount var).
+function getImagesDir() {
+  const dbPath = process.env.DB_PATH || '/app/database/okey.db';
+  const dir = path.join(path.dirname(dbPath), 'images');
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+  return dir;
+}
+
+module.exports = { getDb, getImagesDir };
