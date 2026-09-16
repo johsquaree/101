@@ -2,13 +2,24 @@
 
 const COLORS = ['red', 'yellow', 'blue', 'black'];
 
+// Bir oyuncu elini açmadan biten oyunda, işlenmemiş her joker/okey taşı için
+// kaybeden 101 puan ceza yer (bkz. 101 Okey kuralları — işlek taş cezası).
+const UNUSED_WILD_PENALTY = 101;
+
+// Açmak için gereken minimum: per/seri toplamı ya da 5 çift.
+const MIN_PAIRS_TO_OPEN = 5;
+
 /**
  * Ana değerlendirme fonksiyonu.
  * tiles: [{ color, number, isOkey }]
  * okeyTile: { color, number } | null  — gösterge taşının bir sonraki taşı
  *
  * Döndürür:
- * { tiles, totalScore, canOpen, isFinished, runs, sets, remaining, groupsTotal, message }
+ * { tiles, totalScore, canOpen, isFinished, meldType, runs, sets, pairs, remaining, groupsTotal, message }
+ *
+ * meldType: 'run-set' | 'pair' — el hangi yolla değerlendirildi.
+ * Kurallara göre çift ile per/seri aynı elde karıştırılamaz, bu yüzden
+ * iki yaklaşım ayrı ayrı hesaplanır ve oyuncu için daha avantajlı olan raporlanır.
  */
 function evaluateHand(tiles, okeyTile) {
   const isWild = t =>
@@ -23,7 +34,11 @@ function evaluateHand(tiles, okeyTile) {
     return cc !== 0 ? cc : a.number - b.number;
   });
 
-  // Tüm taşları yerleştirmeye çalış (el bitirme kontrolü)
+  const pairResult = evaluatePairs(tiles, isWild);
+  const pairsFinished = pairResult.remaining.length === 0 && pairResult.pairs.length > 0;
+  const pairsCanOpen = pairResult.pairs.length >= MIN_PAIRS_TO_OPEN;
+
+  // Tüm taşları yerleştirmeye çalış (el bitirme kontrolü) — per/seri yolu
   const solution = solveAll(sorted, wilds.length);
 
   if (solution !== null) {
@@ -33,34 +48,119 @@ function evaluateHand(tiles, okeyTile) {
     return {
       tiles,
       totalScore: 0,
-      canOpen: groupsTotal >= 101,
+      canOpen: groupsTotal >= 101 || pairsCanOpen,
       isFinished: true,
+      meldType: 'run-set',
       runs,
       sets,
+      pairs: [],
       remaining: [],
       groupsTotal,
       message: 'El tamam! Açabilirsiniz.',
     };
   }
 
-  // En iyi kısmi yerleştirme
+  if (pairsFinished) {
+    return {
+      tiles,
+      totalScore: 0,
+      canOpen: true,
+      isFinished: true,
+      meldType: 'pair',
+      runs: [],
+      sets: [],
+      pairs: pairResult.pairs,
+      remaining: [],
+      groupsTotal: 0,
+      message: `El çiftle tamam! (${pairResult.pairs.length} çift) Açabilirsiniz.`,
+    };
+  }
+
+  // En iyi kısmi yerleştirme — per/seri yolu
   const { groups, remaining, wildsLeft } = bestPartial(sorted, wilds.length);
   const groupsTotal = calcGroupsTotal(groups);
   const unusedWilds = wilds.slice(0, wildsLeft);
   const remainingAll = [...remaining, ...unusedWilds];
-  const score = remaining.reduce((s, t) => s + (t.number || 0), 0) + wildsLeft * 30;
+  const runSetScore =
+    remaining.reduce((s, t) => s + (t.number || 0), 0) + wildsLeft * UNUSED_WILD_PENALTY;
+
+  // En iyi kısmi yerleştirme — çift yolu
+  const pairScore = pairResult.remaining.reduce(
+    (s, t) => s + (isWild(t) ? UNUSED_WILD_PENALTY : t.number || 0),
+    0
+  );
+
+  // Çift yolu daha az puan bırakıyorsa (oyuncu için daha avantajlıysa) onu raporla.
+  if (pairResult.pairs.length > 0 && pairScore <= runSetScore) {
+    return {
+      tiles,
+      totalScore: pairScore,
+      canOpen: pairsCanOpen || groupsTotal >= 101,
+      isFinished: false,
+      meldType: 'pair',
+      runs: [],
+      sets: [],
+      pairs: pairResult.pairs,
+      remaining: pairResult.remaining,
+      groupsTotal: 0,
+      message: `${pairScore} puan kaldı (${pairResult.pairs.length} çift)`,
+    };
+  }
 
   return {
     tiles,
-    totalScore: score,
-    canOpen: groupsTotal >= 101,
+    totalScore: runSetScore,
+    canOpen: groupsTotal >= 101 || pairsCanOpen,
     isFinished: false,
+    meldType: 'run-set',
     runs: groups.filter(g => g.type === 'run').map(g => g.tiles),
     sets: groups.filter(g => g.type === 'set').map(g => g.tiles),
+    pairs: [],
     remaining: remainingAll,
     groupsTotal,
-    message: `${score} puan kaldı`,
+    message: `${runSetScore} puan kaldı`,
   };
+}
+
+/**
+ * Taşları çift (aynı renk + aynı sayı ikilisi) olarak eşleştirmeye çalışır.
+ * Joker/okey taşı, eşi bulunamayan tek taşların ya da başka bir jokerin
+ * eşi olabilir. Açgözlü eşleştirme yeterli: her joker en fazla bir çifti
+ * tamamlayabileceğinden, önce tek kalan gerçek taşları kurtarmak, jokerleri
+ * kendi aralarında eşlemekten her zaman en az o kadar iyidir.
+ */
+function evaluatePairs(tiles, isWild) {
+  const wildTiles = tiles.filter(isWild);
+  const normals = tiles.filter(t => !isWild(t));
+
+  const groups = new Map();
+  for (const t of normals) {
+    const key = `${t.color}-${t.number}`;
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(t);
+  }
+
+  const pairs = [];
+  const singles = [];
+  for (const group of groups.values()) {
+    let i = 0;
+    for (; i + 1 < group.length; i += 2) pairs.push([group[i], group[i + 1]]);
+    if (i < group.length) singles.push(group[i]);
+  }
+
+  const wildsPool = [...wildTiles];
+  for (const single of singles) {
+    if (wildsPool.length === 0) break;
+    pairs.push([single, wildsPool.shift()]);
+  }
+  const pairedSingleCount = Math.min(singles.length, wildTiles.length);
+  const unpairedSingles = singles.slice(pairedSingleCount);
+
+  while (wildsPool.length >= 2) {
+    pairs.push([wildsPool.shift(), wildsPool.shift()]);
+  }
+
+  return { pairs, remaining: [...unpairedSingles, ...wildsPool] };
 }
 
 /** Tüm taşları geçerli gruplara yerleştirmeye çalışır. Başarılıysa group dizisi, değilse null. */

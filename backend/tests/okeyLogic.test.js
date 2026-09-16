@@ -162,11 +162,72 @@ describe('Puan ve canOpen (101+)', () => {
     expect(r.groupsTotal).toBeGreaterThanOrEqual(101);
   });
 
-  test('Joker kalan kalınca 30 puan', () => {
-    // 1 joker tek başına → 30 puan ceza
+  test('Joker kalan kalınca 101 puan ceza (işlek taş cezası)', () => {
+    // 1 joker tek başına → 101 puan ceza
     const tiles = [joker()];
     const r = evaluateHand(tiles, null);
-    expect(r.totalScore).toBe(30);
+    expect(r.totalScore).toBe(101);
+  });
+});
+
+// ─────────────────────────────────────────────
+// ÇİFT (PAIR) TESTLERİ
+// ─────────────────────────────────────────────
+
+describe('Çift (pair)', () => {
+  test('8 çift → çiftle bitmiş sayılır', () => {
+    // Renkler/sayılar kasıtlı dağınık: yanlışlıkla seri/takım oluşturmasın diye
+    const combos = [
+      ['red', 1], ['blue', 3], ['black', 5], ['yellow', 7],
+      ['red', 9], ['blue', 11], ['black', 13], ['yellow', 2],
+    ];
+    const tiles = combos.flatMap(([color, n]) => [t(color, n), t(color, n)]);
+    const r = evaluateHand(tiles, null);
+    expect(r.isFinished).toBe(true);
+    expect(r.meldType).toBe('pair');
+    expect(r.pairs).toHaveLength(8);
+    expect(r.totalScore).toBe(0);
+  });
+
+  test('5 çift → canOpen true (101 altında olsa bile)', () => {
+    const tiles = [1, 2, 3, 4, 5].flatMap(n => [t('blue', n), t('blue', n)]);
+    const r = evaluateHand(tiles, null);
+    expect(r.canOpen).toBe(true);
+  });
+
+  test('4 çift → canOpen false', () => {
+    const tiles = [1, 2, 3, 4].flatMap(n => [t('blue', n), t('blue', n)]);
+    const r = evaluateHand(tiles, null);
+    expect(r.canOpen).toBe(false);
+  });
+
+  test('Jokerli çift — eşi olmayan taş jokerle eşleşir', () => {
+    const tiles = [t('red', 9), joker()];
+    const r = evaluateHand(tiles, null);
+    expect(r.isFinished).toBe(true);
+    expect(r.meldType).toBe('pair');
+  });
+
+  test('İki joker birbiriyle çift olur', () => {
+    const tiles = [joker(), joker()];
+    const r = evaluateHand(tiles, null);
+    expect(r.isFinished).toBe(true);
+    expect(r.meldType).toBe('pair');
+  });
+
+  test('Aynı renk aynı sayıdan 2 taş, farklı renk 2 taş → 1 çift + 2 kalan', () => {
+    const tiles = [t('red', 4), t('red', 4), t('blue', 7), t('black', 9)];
+    const r = evaluateHand(tiles, null);
+    expect(r.isFinished).toBe(false);
+    expect(r.meldType).toBe('pair');
+    expect(r.pairs).toHaveLength(1);
+    expect(r.remaining).toHaveLength(2);
+  });
+
+  test('Farklı renk aynı sayı çift oluşturmaz (per ile karıştırılmaz)', () => {
+    const tiles = [t('red', 4), t('blue', 4)];
+    const r = evaluateHand(tiles, null);
+    expect(r.pairs).toHaveLength(0);
   });
 });
 
