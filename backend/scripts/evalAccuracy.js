@@ -7,7 +7,7 @@
 require('dotenv').config();
 const path = require('path');
 const fs = require('fs');
-const Database = require('better-sqlite3');
+const { DatabaseSync } = require('node:sqlite');
 const { recognizeTiles } = require('../src/services/visionService');
 
 const MIME_BY_EXT = { jpg: 'image/jpeg', jpeg: 'image/jpeg', png: 'image/png', webp: 'image/webp', heic: 'image/heic' };
@@ -73,7 +73,7 @@ async function main() {
     console.error(`DB bulunamadı: ${dbPath}`);
     process.exit(1);
   }
-  const db = new Database(dbPath, { readonly: true });
+  const db = new DatabaseSync(dbPath, { readOnly: true });
 
   const rows = db.prepare(`
     SELECT id, image_path, recognized_tiles, corrected_tiles
